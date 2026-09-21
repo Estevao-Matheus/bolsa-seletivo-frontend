@@ -13,10 +13,10 @@ import {
 
 export type Measurement = {
   hora: string;
-  valor: number | string;
+  valor: number | null;          
   status: "VÁLIDA" | "INVÁLIDA";
   variacao: number | null;
-  diagnostico: string;
+  diagnostico: "Inicial" | "Normal" | "Brusca" | "Sensor";
 };
 
 type MeasurementsTableProps = {
@@ -30,17 +30,11 @@ export default function MeasurementsTable({
     <Card>
       <CardContent sx={{ p: 0 }}>
         <div style={{ padding: 16 }}>
-          <Typography
-            variant="subtitle1"
-            color="primary.main"
-          >
+          <Typography variant="subtitle1" color="primary.main">
             ▦ Tabela de Medições Processadas
           </Typography>
 
-          <Typography
-            variant="caption"
-            color="text.secondary"
-          >
+          <Typography variant="caption" color="text.secondary">
             {measurements.length} registros
           </Typography>
         </div>
@@ -59,44 +53,33 @@ export default function MeasurementsTable({
 
             <TableBody>
               {measurements.map((measurement, index) => {
-                const valid =
-                  measurement.status === "VÁLIDA";
+                const valid = measurement.status === "VÁLIDA";
 
                 return (
                   <TableRow
                     hover
                     key={`${measurement.hora}-${index}`}
                   >
-                    <TableCell>
-                      {measurement.hora}
-                    </TableCell>
+                    <TableCell>{measurement.hora}</TableCell>
 
+                    {/* 👈 trata null explicitamente */}
                     <TableCell
                       sx={{
                         fontFamily:
                           "var(--font-jetbrains-mono), monospace",
                       }}
                     >
-                      {typeof measurement.valor ===
-                      "number"
-                        ? measurement.valor.toFixed(1)
-                        : measurement.valor}
+                      {measurement.valor === null
+                        ? "—"
+                        : measurement.valor.toFixed(1)}
                     </TableCell>
 
                     <TableCell>
                       <Chip
                         label={measurement.status}
                         size="small"
-                        color={
-                          valid
-                            ? "secondary"
-                            : "tertiary"
-                        }
-                        variant={
-                          valid
-                            ? "filled"
-                            : "outlined"
-                        }
+                        color={valid ? "secondary" : "tertiary"}
+                        variant={valid ? "filled" : "outlined"}
                       />
                     </TableCell>
 
@@ -113,9 +96,7 @@ export default function MeasurementsTable({
                           : measurement.variacao.toFixed(1)}
                     </TableCell>
 
-                    <TableCell>
-                      {measurement.diagnostico}
-                    </TableCell>
+                    <TableCell>{measurement.diagnostico}</TableCell>
                   </TableRow>
                 );
               })}
