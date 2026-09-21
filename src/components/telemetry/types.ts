@@ -1,3 +1,12 @@
+export interface TelemetryRequest {
+  limite: number;
+
+  medicoes: {
+    hora: string;
+    valor: number | null;
+  }[];
+}
+
 export interface TelemetryPayload {
   estatisticas: {
     max: number;

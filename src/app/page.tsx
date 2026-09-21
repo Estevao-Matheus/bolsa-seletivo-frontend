@@ -19,6 +19,7 @@ import SuddenChangeAlert from "@/components/telemetry/SuddenChangeAlert";
 
 import { mockTelemetryPayload } from "@/components/telemetry/mock";
 import { mockMeasurements } from "@/components/telemetry/mockMeasurements";
+import { buildTelemetryRequest } from "@/components/telemetry/parser";
 
 export default function Home() {
   const [sequence, setSequence] = useState("");
@@ -28,12 +29,23 @@ export default function Home() {
   const payload = mockTelemetryPayload;
 
   
-  const handleAnalyze = () => {
-    console.log("Sequência:", sequence);
-    console.log("Limiar:", threshold);
+const handleAnalyze = () => {
+  try {
+    const request = buildTelemetryRequest(
+      sequence,
+      threshold,
+    );
 
-    
-  };
+    console.log("Payload enviado para API:");
+    console.log(
+      JSON.stringify(request, null, 2),
+    );
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+};
 
   const handleExample = () => {
     setSequence(
