@@ -20,7 +20,7 @@ import MetricCard from "@/components/telemetry/MetricCard";
 import MeasurementsTable from "@/components/telemetry/MeasurementsTable";
 import SuddenChangeAlert from "@/components/telemetry/SuddenChangeAlert";
 
-import { mockMeasurements } from "@/components/telemetry/mockMeasurements";
+
 import { buildMeasurements } from "@/components/telemetry/buildMeasurements";
 import { Measurement } from "@/components/telemetry/MeasurementsTable";
 import { buildTelemetryRequest } from "@/components/telemetry/parser";
@@ -227,13 +227,13 @@ export default function Home() {
                   onChange={(e) => setThreshold(e.target.value)}
                   slotProps={{
                     htmlInput: { step: "0.1", min: "0" },
-                  }}
-                  InputProps={{
-                    endAdornment: (
+                    input:{
+                      endAdornment: (
                       <Typography variant="caption" color="text.secondary">
                         unid
                       </Typography>
                     ),
+                  }
                   }}
                 />
               </Box>
@@ -417,15 +417,13 @@ export default function Home() {
 
                     <Stack
                       direction="row"
-                      flexWrap="wrap"
-                      gap={1}
-                      sx={{ mt: 1.5 }}
+                      sx={{ mt: 1.5, flexWrap: "wrap", gap: 1 }}
                     >
                       {payload.lista_invalidas.map((item) => (
                         <Chip
                           key={item.hora}
                           label={`${item.hora} — inválida`}
-                          color="tertiary"
+                          color="error"
                           variant="outlined"
                           size="small"
                           sx = {{mr:1}}

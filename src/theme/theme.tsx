@@ -14,6 +14,14 @@ declare module "@mui/material/styles" {
   }
 }
 
+
+declare module "@mui/material/Chip" {
+  interface ChipPropsColorOverrides {
+    tertiary: true;
+    neutral: true;
+  }
+}
+
 /**
  * =========================================================
  * COLORS
@@ -49,21 +57,11 @@ const colors = {
     contrastText: "#FFFFFF",
   },
 
-  /**
-   * Background principal da aplicação.
-   *
-   * Inspirado diretamente no azul/cinza da primeira
-   * imagem e no fundo da segunda.
-   */
   background: {
     default: "#E4E8F3",
     paper: "#F3F3F3",
   },
 
-  /**
-   * Superfícies utilizadas em cards, headers,
-   * áreas de informação etc.
-   */
   surface: {
     main: "#DAE3F3",
     light: "#E8EEF8",
@@ -144,18 +142,6 @@ const theme = createTheme({
    * -------------------------------------------------------
    * TYPOGRAPHY
    * -------------------------------------------------------
-   *
-   * Hanken Grotesk:
-   * - títulos
-   * - textos
-   * - interface
-   *
-   * JetBrains Mono:
-   * - labels
-   * - números
-   * - horários
-   * - status
-   * - dados técnicos
    */
 
   typography: {
@@ -258,9 +244,6 @@ const theme = createTheme({
    * -------------------------------------------------------
    * SHAPE
    * -------------------------------------------------------
-   *
-   * A interface não possui aquele aspecto "app mobile"
-   * extremamente arredondado.
    */
 
   shape: {
@@ -411,14 +394,13 @@ const theme = createTheme({
           lineHeight: 1.2,
         },
 
-        containedPrimary: {
-          "&:hover": {
+        // 👈 CORRIGIDO: seletores aninhados em vez de chaves "containedPrimary"/"containedSecondary"
+        contained: {
+          "&.MuiButton-containedPrimary:hover": {
             backgroundColor: colors.primary.dark,
           },
-        },
 
-        containedSecondary: {
-          "&:hover": {
+          "&.MuiButton-containedSecondary:hover": {
             backgroundColor: colors.secondary.dark,
           },
         },

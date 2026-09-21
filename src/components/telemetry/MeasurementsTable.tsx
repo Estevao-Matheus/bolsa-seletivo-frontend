@@ -78,7 +78,7 @@ export default function MeasurementsTable({
                       <Chip
                         label={measurement.status}
                         size="small"
-                        color={valid ? "secondary" : "tertiary"}
+                        color={valid ? "secondary" : "error"}
                         variant={valid ? "filled" : "outlined"}
                       />
                     </TableCell>

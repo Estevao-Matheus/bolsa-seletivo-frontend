@@ -11,7 +11,7 @@ export default function SuddenChangeAlert({
   if (changes.length === 0) {
     return (
       <Alert severity="success" >
-        <Typography component="span" fontWeight={700}>
+        <Typography component="span" sx={{ fontWeight: 700 }}>
           NENHUMA MUDANÇA BRUSCA
         </Typography>{" "}
         — Não foram detectadas variações acima do limiar
