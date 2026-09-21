@@ -347,7 +347,7 @@ const handleAnalyze = () => {
                     color: "text.primary",
                   }}
                 >
-                  sen
+                  sem valor
                 </Box>
                 ,{" "}
                 <Box
@@ -359,8 +359,8 @@ const handleAnalyze = () => {
                   }}
                 >
                   null
-                </Box>{" "}
-                ou{" "}
+                </Box>
+                ,
                 <Box
                   component="span"
                   sx={{
@@ -369,7 +369,7 @@ const handleAnalyze = () => {
                     color: "text.primary",
                   }}
                 >
-                  N/D
+                  n/d ou nd 
                 </Box>{" "}
                 são ignoradas no processamento.
               </Typography>

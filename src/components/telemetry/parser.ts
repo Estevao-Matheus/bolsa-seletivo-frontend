@@ -1,6 +1,6 @@
 import { TelemetryRequest } from "./types";
 
-const NULL_VALUES = ["sen", "null", "n/d", "nd", ""];
+const NULL_VALUES = ["null", "n/d", "nd","sem valor",""];
 
 export function parseMeasurements(
   sequence: string,
